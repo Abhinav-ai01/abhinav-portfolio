@@ -1,0 +1,2558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080d18">
+  <meta name="description" content="Abhinav — AI/ML Engineer building machine learning systems, agentic AI applications, and full-stack software.">
+  <meta property="og:title" content="Abhinav | AI/ML Engineer">
+  <meta property="og:description" content="Explore AI, machine learning, agentic AI, and software engineering projects.">
+  <meta property="og:type" content="website">
+  <meta name="robots" content="index,follow">
+  <title>Abhinav | AI/ML Engineer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  color-scheme: dark;
+  --bg: #080d18;
+  --surface: #101827;
+  --surface2: #162236;
+  --text: #eef4ff;
+  --muted: #9baac0;
+  --line: rgba(163,185,219,.16);
+  --green: #72f1c0;
+  --blue: #86adff;
+  --purple: #b7a1ff;
+  --danger: #ff8e9a;
+  --mono: "DM Mono", monospace;
+  --sans: "Manrope", sans-serif;
+}
+
+body.light {
+  color-scheme: light;
+  --bg: #f5f8fc;
+  --surface: #fff;
+  --surface2: #eaf0f8;
+  --text: #142036;
+  --muted: #5d6c81;
+  --line: rgba(35,57,88,.15);
+  --green: #087f60;
+  --blue: #2865b7;
+  --purple: #7553c8;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font: 14px/1.7 var(--sans);
+  transition: background .25s, color .25s;
+}
+
+body, button, input, textarea { font-family: var(--sans); }
+
+a { color: inherit; text-decoration: none; }
+
+button { cursor: pointer; }
+
+button, input, textarea { font-size: inherit; }
+
+button:focus-visible, a:focus-visible,
+input:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 4px;
+}
+
+::selection { background: var(--green); color: #06121b; }
+
+img, svg { max-width: 100%; }
+
+.container {
+  width: min(1120px, calc(100% - 44px));
+  margin-inline: auto;
+}
+
+.progress {
+  position: fixed;
+  inset: 0 0 auto;
+  height: 3px;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.progress span {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--green), var(--blue), var(--purple));
+}
+
+.background-glow {
+  position: fixed;
+  z-index: -2;
+  pointer-events: none;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  filter: blur(110px);
+  opacity: .11;
+}
+
+.glow-one { top: 80px; right: -180px; background: #477fff; }
+.glow-two { top: 650px; left: -220px; background: #25e3a8; }
+
+#neural-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: .65;
+}
+
+.header {
+  width: min(1200px, calc(100% - 44px));
+  height: 78px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  z-index: 50;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: -.4px;
+  flex-shrink: 0;
+}
+
+.logo-mark {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  background: linear-gradient(135deg, var(--green), var(--blue));
+  color: #06121b;
+  font-size: 17px;
+}
+
+.logo-dot { color: var(--green); }
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 19px;
+}
+
+.nav a {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  transition: color .2s;
+}
+
+.nav a:hover, .nav a.active { color: var(--green); }
+
+.nav .nav-contact {
+  border: 1px solid var(--line);
+  padding: 9px 12px;
+  border-radius: 8px;
+  color: var(--text);
+}
+
+.header-actions { display: flex; align-items: center; gap: 8px; }
+
+.icon-button, .menu-button {
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  width: 37px;
+  height: 37px;
+  background: var(--surface);
+  color: var(--green);
+  display: grid;
+  place-items: center;
+}
+
+.menu-button { display: none; }
+
+.hero {
+  min-height: 620px;
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  align-items: center;
+  gap: 35px;
+  padding-top: 65px;
+  padding-bottom: 75px;
+}
+
+.eyebrow, .index, .mono-label {
+  font: 10px var(--mono);
+  letter-spacing: 1.3px;
+  color: var(--green);
+}
+
+.eyebrow { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; }
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 13px var(--green);
+}
+
+.hero h1 {
+  margin: 22px 0;
+  font-size: clamp(43px, 5.4vw, 72px);
+  line-height: 1.09;
+  letter-spacing: -3.5px;
+  font-weight: 800;
+}
+
+.gradient {
+  color: var(--green);
+  background: linear-gradient(100deg, var(--green), var(--blue), var(--purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-description {
+  max-width: 570px;
+  color: var(--muted);
+  line-height: 1.95;
+  font-size: 14px;
+}
+
+.button-row { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 25px; }
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 12px 15px;
+  font-size: 11px;
+  font-weight: 800;
+  background: var(--surface);
+  color: var(--text);
+  transition: transform .2s, border-color .2s;
+}
+
+.btn:hover { transform: translateY(-2px); border-color: var(--green); }
+
+.btn-primary {
+  background: var(--green);
+  border-color: var(--green);
+  color: #06151b;
+}
+
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  margin-top: 36px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.stat strong { display: block; font-size: 13px; }
+.stat span { display: block; font-size: 10px; color: var(--muted); }
+
+.hero-art {
+  min-height: 430px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+}
+
+.orbit {
+  position: absolute;
+  width: 340px;
+  height: 270px;
+  border: 1px solid rgba(134,173,255,.2);
+  border-radius: 50%;
+  transform: rotate(-25deg);
+}
+
+.orbit.two {
+  width: 260px;
+  height: 380px;
+  transform: rotate(35deg);
+  border-color: rgba(114,241,192,.2);
+}
+
+.profile-card {
+  position: relative;
+  z-index: 2;
+  width: min(310px, 78%);
+  padding: 22px;
+  border: 1px solid rgba(134,173,255,.25);
+  border-radius: 19px;
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  box-shadow: 0 25px 90px #0005;
+  backdrop-filter: blur(14px);
+  transition: transform .15s ease;
+}
+
+.profile-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font: 9px var(--mono);
+  color: var(--muted);
+}
+
+.live-status { color: var(--green); }
+
+.profile-photo {
+  width: 100px;
+  height: 100px;
+  margin: 28px auto 16px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 2px solid var(--green);
+  background: linear-gradient(135deg, var(--green), var(--blue));
+  color: #06151b;
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.profile-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-card h2 { text-align: center; font-size: 18px; margin: 0; }
+.profile-card > p { text-align: center; color: var(--muted); font-size: 10px; margin: 5px 0 20px; }
+
+.terminal-preview {
+  padding-top: 13px;
+  border-top: 1px solid var(--line);
+  font: 10px/2 var(--mono);
+  color: var(--muted);
+}
+
+.terminal-preview span { color: var(--green); }
+
+.floating-tag {
+  position: absolute;
+  z-index: 3;
+  padding: 9px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  font-size: 10px;
+  font-weight: 800;
+  box-shadow: 0 12px 30px #0003;
+}
+
+.tag-a { top: 55px; left: 0; color: var(--green); }
+.tag-b { top: 100px; right: 0; color: var(--blue); }
+.tag-c { bottom: 55px; right: 5px; color: var(--purple); }
+
+.ticker {
+  border-block: 1px solid var(--line);
+  overflow: hidden;
+  background: color-mix(in srgb, var(--surface) 65%, transparent);
+}
+
+.ticker-track {
+  display: flex;
+  justify-content: space-around;
+  gap: 32px;
+  white-space: nowrap;
+  padding: 17px;
+  color: var(--muted);
+  font: 10px var(--mono);
+  letter-spacing: 1px;
+}
+
+.ticker-track b { color: var(--green); }
+
+.section { padding-top: 95px; }
+
+.section-head { margin-bottom: 28px; }
+
+.index { display: block; margin-bottom: 12px; }
+
+.section h2, .contact-panel h2 {
+  font-size: clamp(30px, 4vw, 44px);
+  line-height: 1.2;
+  letter-spacing: -1.8px;
+  margin: 0;
+}
+
+.heading-muted { color: var(--muted); }
+
+.section-intro { color: var(--muted); font-size: 13px; max-width: 700px; margin-top: 14px; line-height: 1.9; }
+
+.about-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 55px; }
+
+.about-copy p { color: var(--muted); font-size: 13px; line-height: 2; margin: 0 0 15px; }
+
+.callout {
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--surface);
+  align-self: start;
+}
+
+.callout strong { font-size: 13px; }
+.callout p { color: var(--muted); font-size: 12px; line-height: 1.9; margin-bottom: 0; }
+
+.card-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 15px; }
+
+.focus-card, .project-card, .skill-card, .edu-card, .timeline-card {
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--surface);
+  transition: transform .22s, border-color .22s;
+}
+
+.focus-card { padding: 22px; }
+.focus-card:hover, .project-card:hover, .skill-card:hover { transform: translateY(-4px); border-color: var(--green); }
+
+.card-number { color: var(--green); font: 10px var(--mono); }
+.focus-icon { font-size: 26px; display: block; margin: 19px 0 10px; }
+.focus-card h3 { font-size: 15px; margin: 0 0 8px; }
+.focus-card p { font-size: 11px; color: var(--muted); line-height: 1.9; margin: 0; }
+
+.section-topline { display: flex; align-items: end; justify-content: space-between; gap: 15px; }
+
+.project-tools { margin: 23px 0 18px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; }
+
+.search-wrap { position: relative; flex: 1; min-width: 200px; max-width: 350px; }
+.search-wrap input {
+  width: 100%;
+  padding: 11px 13px 11px 36px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  outline: none;
+  font-size: 11px;
+}
+.search-wrap input:focus { border-color: var(--green); }
+.search-symbol { position: absolute; top: 8px; left: 12px; color: var(--muted); }
+
+.filters { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.filter {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  border-radius: 7px;
+  padding: 8px 10px;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.filter.active, .filter:hover { color: #07151b; background: var(--green); border-color: var(--green); }
+
+.project-count { color: var(--muted); font: 10px var(--mono); margin: 0 0 13px; }
+
+.projects { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
+
+.project-card { overflow: hidden; min-width: 0; }
+.project-card[hidden] { display: none; }
+
+.project-cover {
+  height: 175px;
+  padding: 18px;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 50%, #174f52, #12243a 70%);
+}
+
+.project-cover.purple { background: radial-gradient(circle at 50% 50%, #493d75, #172138 72%); }
+.project-cover.blue { background: radial-gradient(circle at 50% 50%, #214e7d, #122037 72%); }
+.project-cover.orange { background: radial-gradient(circle at 50% 50%, #71482c, #1c2436 72%); }
+.project-cover.green { background: radial-gradient(circle at 50% 50%, #1b5948, #122037 72%); }
+.project-cover.red { background: radial-gradient(circle at 50% 50%, #6c3648, #172138 72%); }
+
+.cover-label { font: 9px var(--mono); color: #c2d3e8; letter-spacing: 1px; }
+.cover-graphic { position: absolute; inset: 42px 22px 20px; display: grid; place-items: center; }
+
+.flow-diagram { display: flex; justify-content: center; align-items: center; gap: 8px; width: 100%; }
+.flow-node { border: 1px solid #8eb9d5; border-radius: 7px; background: #112338dd; color: #e6f3ff; padding: 10px 8px; font: 9px var(--mono); text-align: center; }
+.flow-node.active { border-color: var(--green); color: var(--green); }
+.flow-arrow { color: var(--green); font-size: 17px; }
+
+.signal-svg { width: 100%; max-height: 95px; }
+.cover-caption { position: absolute; bottom: 12px; right: 15px; font: 8px var(--mono); color: #b5c8df; }
+
+.project-body { padding: 21px; }
+.project-label { font: 9px var(--mono); color: var(--green); letter-spacing: .8px; }
+.project-body h3 { font-size: 18px; letter-spacing: -.5px; margin: 8px 0; }
+.project-body p { color: var(--muted); font-size: 11px; line-height: 1.9; margin: 0 0 13px; }
+.tags { display: flex; flex-wrap: wrap; gap: 5px; margin: 13px 0; }
+.tags span { border: 1px solid var(--line); border-radius: 5px; padding: 4px 7px; color: var(--muted); font: 9px var(--mono); }
+.project-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 13px; margin-top: 14px; }
+.text-button { padding: 0; border: 0; background: none; color: var(--green); font-size: 10px; font-weight: 800; }
+.text-button:hover { text-decoration: underline; }
+.repo-link { color: var(--muted); font-size: 10px; font-weight: 800; }
+.repo-link:hover { color: var(--green); }
+
+.case-study {
+  display: none;
+  margin-top: 13px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.project-card.expanded .case-study { display: block; }
+.case-study h4 { font-size: 11px; margin: 10px 0 4px; }
+.case-study p, .case-study li { color: var(--muted); font-size: 10px; line-height: 1.8; }
+.case-study ul { padding-left: 17px; margin: 6px 0; }
+.case-study a { color: var(--green); }
+
+.skills-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+
+.skill-card { display: flex; gap: 16px; padding: 20px; }
+.skill-symbol { width: 37px; height: 37px; flex: 0 0 37px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 10px; color: var(--green); font-size: 16px; }
+.skill-card h3 { font-size: 12px; margin: 0 0 8px; }
+.skill-card p { font-size: 10px; line-height: 2; color: var(--muted); margin: 0; }
+
+.timeline { border-left: 1px solid var(--line); margin-left: 5px; padding-left: 25px; }
+.timeline-card { position: relative; padding: 22px; margin-bottom: 14px; }
+.timeline-card::before { content: ""; position: absolute; left: -31px; top: 25px; width: 9px; height: 9px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 5px color-mix(in srgb, var(--green) 13%, transparent); }
+.timeline-date { font: 9px var(--mono); color: var(--green); }
+.timeline-card h3 { font-size: 15px; margin: 7px 0 3px; }
+.timeline-card .role { color: var(--blue); font-size: 11px; font-weight: 800; }
+.timeline-card p { color: var(--muted); font-size: 11px; line-height: 1.9; margin-bottom: 0; }
+
+.education-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; }
+.edu-card { padding: 22px; }
+.edu-label { font: 9px var(--mono); color: var(--green); }
+.edu-card h3 { font-size: 15px; line-height: 1.6; margin: 12px 0 6px; }
+.edu-card p { font-size: 11px; color: var(--muted); margin: 0; }
+.edu-bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-top: 17px; color: var(--muted); font-size: 10px; }
+.edu-bottom strong { color: var(--green); }
+
+.github-panel { padding: 23px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+.github-header { display: flex; align-items: center; justify-content: space-between; gap: 15px; flex-wrap: wrap; }
+.github-header h3 { margin: 0; font-size: 16px; }
+.github-user { color: var(--muted); font-size: 11px; }
+.github-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; margin-top: 18px; }
+.github-repo { padding: 15px; border: 1px solid var(--line); border-radius: 9px; min-width: 0; }
+.github-repo a { color: var(--blue); font-weight: 800; font-size: 11px; overflow-wrap: anywhere; }
+.github-repo p { color: var(--muted); font-size: 10px; line-height: 1.7; }
+.github-meta { color: var(--muted); font: 9px var(--mono); }
+
+.contact-panel {
+  padding: clamp(25px,5vw,55px);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: radial-gradient(circle at 95% 5%, color-mix(in srgb, var(--green) 12%, transparent), transparent 35%), var(--surface);
+}
+
+.contact-panel > p { max-width: 680px; color: var(--muted); font-size: 12px; line-height: 1.9; }
+
+.contact-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 35px; margin-top: 28px; }
+
+.contact-details { display: grid; align-content: start; gap: 11px; }
+.contact-item { padding: 14px; border: 1px solid var(--line); border-radius: 9px; }
+.contact-item span { display: block; font: 9px var(--mono); color: var(--green); margin-bottom: 5px; }
+.contact-item a { font-size: 11px; overflow-wrap: anywhere; }
+.contact-item a:hover { color: var(--green); }
+
+.contact-form { display: grid; gap: 12px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.contact-form label { display: grid; gap: 6px; font-size: 10px; color: var(--muted); }
+.contact-form input, .contact-form textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--text);
+  padding: 12px;
+  border-radius: 8px;
+  outline: none;
+  font-size: 11px;
+}
+.contact-form textarea { min-height: 110px; resize: vertical; }
+.form-status { color: var(--green); font-size: 10px; min-height: 17px; }
+
+.footer {
+  width: min(1120px, calc(100% - 44px));
+  margin: auto;
+  padding: 24px 0 30px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.footer a:hover { color: var(--green); }
+
+.floating-tools { position: fixed; z-index: 30; bottom: 18px; right: 18px; display: grid; gap: 8px; }
+.float-button { width: 42px; height: 42px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); color: var(--green); box-shadow: 0 7px 25px #0003; }
+#back-top { opacity: 0; pointer-events: none; transform: translateY(8px); transition: .2s; }
+#back-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+.terminal-launcher {
+  position: fixed;
+  z-index: 30;
+  left: 18px;
+  bottom: 20px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--muted);
+  padding: 10px 12px;
+  font: 10px var(--mono);
+}
+kbd { border: 1px solid var(--line); border-radius: 4px; padding: 2px 5px; font: inherit; color: var(--green); }
+
+dialog {
+  width: min(640px, calc(100% - 26px));
+  max-height: 85vh;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 30px 100px #0008;
+}
+dialog::backdrop { background: #020611c9; backdrop-filter: blur(5px); }
+
+.dialog-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 17px 20px; border-bottom: 1px solid var(--line); }
+.dialog-head h3 { margin: 0; font-size: 13px; }
+.dialog-close { border: 1px solid var(--line); border-radius: 7px; padding: 5px 9px; color: var(--muted); background: transparent; }
+.dialog-body { padding: 20px; max-height: 68vh; overflow: auto; }
+
+.terminal-window { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--bg); }
+.terminal-bar { padding: 10px 13px; border-bottom: 1px solid var(--line); color: var(--muted); font: 10px var(--mono); }
+.terminal-output { min-height: 200px; max-height: 300px; overflow-y: auto; padding: 14px; font: 11px/1.9 var(--mono); white-space: pre-wrap; overflow-wrap: anywhere; }
+.terminal-line { margin-bottom: 5px; }
+.terminal-line.system { color: var(--green); }
+.terminal-line.error { color: var(--danger); }
+.terminal-input-row { display: flex; gap: 8px; align-items: center; padding: 11px 13px; border-top: 1px solid var(--line); }
+.terminal-prompt { color: var(--green); font: 11px var(--mono); }
+#terminal-input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--text); font: 11px var(--mono); }
+
+.chat-widget { position: fixed; z-index: 60; right: 20px; bottom: 75px; width: min(360px, calc(100% - 28px)); }
+.chat-launcher { display: block; margin-left: auto; border: 1px solid var(--green); background: var(--green); color: #07151b; border-radius: 999px; padding: 12px 17px; font-size: 11px; font-weight: 800; box-shadow: 0 10px 35px #0004; }
+.chat-panel { display: none; margin-bottom: 10px; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--surface); box-shadow: 0 20px 65px #0006; }
+.chat-panel.open { display: block; }
+.chat-head { padding: 15px; background: var(--surface2); display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.chat-head strong { display: block; font-size: 12px; }
+.chat-head small { display: block; color: var(--muted); font-size: 9px; }
+.chat-messages { height: 260px; overflow-y: auto; padding: 13px; display: flex; flex-direction: column; gap: 9px; }
+.chat-message { max-width: 91%; padding: 10px 11px; border: 1px solid var(--line); border-radius: 10px; font-size: 10px; line-height: 1.8; overflow-wrap: anywhere; }
+.chat-message.bot { align-self: flex-start; background: var(--surface2); }
+.chat-message.user { align-self: flex-end; background: color-mix(in srgb, var(--green) 14%, var(--surface)); }
+.chat-form { display: flex; gap: 7px; padding: 10px; border-top: 1px solid var(--line); }
+.chat-form input { flex: 1; min-width: 0; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--text); padding: 10px; outline: none; font-size: 10px; }
+.chat-form button { border: 0; border-radius: 8px; background: var(--green); color: #06151b; padding: 0 12px; font-size: 11px; font-weight: 800; }
+.chat-note { padding: 0 12px 10px; color: var(--muted); font-size: 8px; }
+
+.toast { position: fixed; z-index: 120; left: 50%; bottom: 22px; transform: translate(-50%, 12px); opacity: 0; pointer-events: none; padding: 11px 15px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface2); font-size: 10px; transition: .2s; }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .55s, transform .55s; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 1000px) {
+  .nav { gap: 11px; }
+  .nav a { font-size: 10px; }
+  .header { gap: 12px; }
+  .hero h1 { letter-spacing: -2.5px; }
+  .orbit { width: 290px; height: 240px; }
+  .orbit.two { width: 230px; height: 330px; }
+}
+
+@media (max-width: 780px) {
+  html { scroll-padding-top: 75px; }
+  .container, .header, .footer { width: calc(100% - 32px); }
+  .menu-button { display: grid; }
+  .nav {
+    display: none;
+    position: absolute;
+    top: 69px;
+    left: 0;
+    right: 0;
+    padding: 9px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--surface);
+    box-shadow: 0 20px 45px #0005;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+  .nav.open { display: flex; }
+  .nav a { padding: 12px; font-size: 12px; }
+  .nav .nav-contact { margin-top: 4px; }
+  .hero { grid-template-columns: 1fr; padding-top: 48px; gap: 25px; }
+  .hero h1 { font-size: clamp(43px, 11vw, 64px); }
+  .hero-art { min-height: 360px; }
+  .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 22px; }
+  .card-grid { grid-template-columns: 1fr; }
+  .projects { grid-template-columns: 1fr; }
+  .skills-grid, .education-grid { grid-template-columns: 1fr; }
+  .github-grid { grid-template-columns: 1fr; }
+  .section { padding-top: 72px; }
+  .section-topline { align-items: flex-start; flex-direction: column; }
+  .project-tools { flex-direction: column; }
+  .search-wrap { max-width: none; }
+  .terminal-launcher { left: 10px; bottom: 10px; }
+  .floating-tools { right: 10px; bottom: 10px; }
+  .contact-panel { padding: 24px 18px; }
+}
+
+@media (max-width: 430px) {
+  .hero h1 { letter-spacing: -2px; }
+  .hero-stats { gap: 17px; }
+  .form-row { grid-template-columns: 1fr; }
+  .hero-art { min-height: 330px; }
+  .floating-tag { font-size: 9px; padding: 7px 9px; }
+  .tag-a { left: -3px; top: 24px; }
+  .tag-b { right: -3px; top: 67px; }
+  .tag-c { right: 0; bottom: 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
+
+
+/* =====================================================
+   POLISHED HERO, PROFILE IMAGE FALLBACK & MOVING TICKER
+   ===================================================== */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 34px;
+  min-height: auto;
+  padding-top: clamp(65px, 9vw, 112px);
+  padding-bottom: clamp(42px, 6vw, 72px);
+  text-align: center;
+}
+.hero-copy {
+  width: 100%;
+  max-width: 1000px;
+  margin-inline: auto;
+}
+.hero .eyebrow { justify-content: center; }
+.hero h1 {
+  max-width: 1000px;
+  margin: 24px auto;
+  font-size: clamp(58px, 8.2vw, 108px);
+  line-height: .99;
+  letter-spacing: clamp(-5px, -.45vw, -2px);
+  text-wrap: balance;
+}
+.hero-description {
+  max-width: 760px;
+  margin: 22px auto 0;
+  font-size: clamp(15px, 1.35vw, 18px);
+  line-height: 1.9;
+}
+.hero .button-row { justify-content: center; }
+.hero-art {
+  width: min(700px, 100%);
+  min-height: 440px;
+  margin-inline: auto;
+}
+.profile-card {
+  width: min(360px, 76%);
+  padding: 25px;
+}
+.profile-photo {
+  width: 124px;
+  height: 124px;
+  box-shadow: 0 0 0 8px rgba(114,241,192,.07), 0 0 45px rgba(114,241,192,.16);
+}
+.profile-photo img { display: block; }
+.profile-photo img[hidden], .photo-initials[hidden] { display: none !important; }
+.photo-initials {
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: -2px;
+  background: linear-gradient(135deg, var(--green), var(--blue), var(--purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.profile-photo.photo-fallback { background: var(--surface2); }
+.ticker { position: relative; }
+.ticker::before, .ticker::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  width: clamp(22px, 5vw, 72px);
+  pointer-events: none;
+}
+.ticker::before { left: 0; background: linear-gradient(90deg, var(--bg), transparent); }
+.ticker::after { right: 0; background: linear-gradient(270deg, var(--bg), transparent); }
+.ticker-track {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: max-content;
+  padding: 17px 0;
+  animation: ticker-scroll 32s linear infinite;
+  will-change: transform;
+}
+.ticker:hover .ticker-track { animation-play-state: paused; }
+.ticker-group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 36px;
+  padding-right: 36px;
+  white-space: nowrap;
+}
+.ticker-group span { color: var(--muted); }
+.ticker-group b { color: var(--green); }
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (max-width: 780px) {
+  .hero { padding-top: 58px; gap: 20px; }
+  .hero h1 { font-size: clamp(46px, 10.5vw, 76px); letter-spacing: -2.8px; }
+  .hero-art { min-height: 385px; }
+  .ticker-group { gap: 24px; padding-right: 24px; }
+}
+@media (max-width: 430px) {
+  .hero h1 { font-size: clamp(42px, 11vw, 56px); letter-spacing: -2px; }
+  .hero-art { min-height: 345px; }
+  .profile-card { width: 78%; padding: 18px; }
+  .floating-tag { font-size: 9px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track { animation: none; }
+}
+
+</style>
+</head>
+
+<body>
+<div class="progress" aria-hidden="true"><span></span></div>
+<div class="background-glow glow-one"></div>
+<div class="background-glow glow-two"></div>
+
+<header class="header">
+  <a class="logo" href="#home" aria-label="Abhinav homepage">
+    <span class="logo-mark">A.</span>
+    <span>ABHINAV<span class="logo-dot">.</span></span>
+  </a>
+
+  <nav class="nav" id="main-nav" aria-label="Main navigation">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+    <a href="#github">GitHub</a>
+    <a class="nav-contact" href="#contact">Contact ↗</a>
+  </nav>
+
+  <div class="header-actions">
+    <button class="icon-button" id="theme-toggle" aria-label="Toggle colour theme" title="Toggle theme">☼</button>
+    <button class="menu-button" id="menu-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<main>
+<section class="hero container" id="home">
+  <div class="hero-copy">
+    <div class="eyebrow"><span class="status-dot"></span> AI/ML ENGINEER <span>/</span> SOFTWARE DEVELOPER</div>
+    <h1>Building intelligent<br><span class="gradient">systems that matter.</span></h1>
+
+    <p class="hero-description">
+      I'm Abhinav, an AI/ML engineering graduate focused on machine learning,
+      agentic AI, computer vision, and software development. I turn ideas into
+      practical applications by combining data, intelligent systems, and clean engineering.
+    </p>
+
+    <div class="button-row">
+      <a class="btn btn-primary" href="#projects">Explore projects ↘</a>
+      <a class="btn" href="assets/Abhinav_Resume.pdf" download id="resume-button">Download resume ↓</a>
+      <a class="btn" href="#contact">Let's connect ↗</a>
+    </div>
+  </div>
+
+  <div class="hero-art" id="hero-art">
+    <canvas id="neural-canvas" aria-hidden="true"></canvas>
+    <div class="orbit"></div>
+    <div class="orbit two"></div>
+    <div class="floating-tag tag-a">✳ Machine Learning</div>
+    <div class="floating-tag tag-b">⌘ Agentic AI</div>
+    <div class="floating-tag tag-c">◈ Software Systems</div>
+
+    <div class="profile-card" id="profile-card">
+      <div class="profile-top"><span>ENGINEERING PROFILE</span><span class="live-status">● ACTIVE</span></div>
+      <div class="profile-photo">
+        <!-- Replace with your own image: assets/profile.jpg -->
+<img
+  src="assets/profile.jpg"
+  alt="Abhinav's profile photo"
+  class="profile-image"
+  onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+>        <span class="photo-initials" hidden aria-hidden="true">A.</span>
+      </div>
+      <h2>Abhinav</h2>
+      <p>AI/ML Engineer · Bengaluru, India</p>
+      <div class="terminal-preview">
+        <div><span>01</span> learn(data)</div>
+        <div><span>02</span> build(model)</div>
+        <div><span>03</span> ship(solution)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker" aria-label="Technical interests">
+  <div class="ticker-track">
+    <div class="ticker-group"><span>PYTHON</span><b>✳</b><span>MACHINE LEARNING</span><b>✳</b><span>GENERATIVE AI</span><b>✳</b><span>COMPUTER VISION</span><b>✳</b><span>LLM APPLICATIONS</span><b>✳</b><span>FULL-STACK DEVELOPMENT</span><b>✳</b><span>MLOPS</span><b>✳</b></div>
+    <div class="ticker-group" aria-hidden="true"><span>PYTHON</span><b>✳</b><span>MACHINE LEARNING</span><b>✳</b><span>GENERATIVE AI</span><b>✳</b><span>COMPUTER VISION</span><b>✳</b><span>LLM APPLICATIONS</span><b>✳</b><span>FULL-STACK DEVELOPMENT</span><b>✳</b><span>MLOPS</span><b>✳</b></div>
+  </div>
+</div>
+
+<section class="section container reveal" id="about">
+  <div class="section-head">
+    <span class="index">01 / ABOUT</span>
+    <h2>Curiosity meets <span class="heading-muted">engineering.</span></h2>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-copy">
+      <p>
+        I studied Artificial Intelligence and Machine Learning Engineering at
+        RV College of Engineering, Bengaluru. My work explores how AI methods can
+        become reliable tools when combined with thoughtful software engineering.
+      </p>
+      <p>
+        I enjoy working across the development lifecycle: understanding a problem,
+        preparing data, building and evaluating models, designing APIs, and creating
+        interfaces that make the results accessible.
+      </p>
+      <p>
+        My interests include machine learning, deep learning, explainable AI,
+        computer vision, natural language processing, agentic workflows, and
+        data-driven applications.
+      </p>
+    </div>
+
+    <aside class="callout">
+      <span class="index">MY ENGINEERING PRINCIPLE</span>
+      <strong>Build for usefulness, not just novelty.</strong>
+      <p>Understand the problem. Establish a baseline. Evaluate results. Improve the system. Make the solution usable.</p>
+    </aside>
+  </div>
+</section>
+
+<section class="section container reveal" id="focus">
+  <div class="section-head">
+    <span class="index">02 / WHAT I DO</span>
+    <h2>Three areas. <span class="heading-muted">One mindset.</span></h2>
+  </div>
+
+  <div class="card-grid">
+    <article class="focus-card">
+      <span class="card-number">01 — INTELLIGENCE</span>
+      <span class="focus-icon">⌘</span>
+      <h3>AI & Machine Learning</h3>
+      <p>Predictive modelling, feature engineering, deep learning, model evaluation, and explainability.</p>
+    </article>
+
+    <article class="focus-card">
+      <span class="card-number">02 — GENERATION</span>
+      <span class="focus-icon">✳</span>
+      <h3>Generative & Agentic AI</h3>
+      <p>LLM applications, retrieval-augmented generation concepts, agent workflows, and AI-powered tools.</p>
+    </article>
+
+    <article class="focus-card">
+      <span class="card-number">03 — DELIVERY</span>
+      <span class="focus-icon">◈</span>
+      <h3>Software & Data Systems</h3>
+      <p>APIs, responsive interfaces, data processing, streaming pipelines, and model integration.</p>
+    </article>
+  </div>
+</section>
+
+<section class="section container reveal" id="projects">
+  <div class="section-topline">
+    <div class="section-head">
+      <span class="index">03 / SELECTED WORK</span>
+      <h2>Projects with <span class="heading-muted">purpose.</span></h2>
+      <p class="section-intro">Explore the problem, technical approach, and implementation focus behind each project. Expand a project to read its case study.</p>
+    </div>
+    <a class="btn" href="#github">Explore GitHub ↗</a>
+  </div>
+
+  <div class="project-tools">
+    <div class="search-wrap">
+      <span class="search-symbol">⌕</span>
+      <input id="project-search" type="search" placeholder="Search projects or technologies..." aria-label="Search projects">
+    </div>
+
+    <div class="filters" aria-label="Project categories">
+      <button class="filter active" data-filter="all" aria-pressed="true">All</button>
+      <button class="filter" data-filter="agentic" aria-pressed="false">Agentic AI</button>
+      <button class="filter" data-filter="ml" aria-pressed="false">AI / ML</button>
+      <button class="filter" data-filter="software" aria-pressed="false">Software</button>
+      <button class="filter" data-filter="vision" aria-pressed="false">Computer Vision</button>
+    </div>
+  </div>
+
+  <p class="project-count" id="project-count" aria-live="polite">Showing projects</p>
+
+  <div class="projects" id="project-grid">
+    <article class="project-card" data-category="agentic" data-search="adaptive learning platform agentic ai knowledge tracing recommendation explanation kafka spark streaming fastapi react groq llm">
+      <div class="project-cover">
+        <span class="cover-label">01 / ADAPTIVE LEARNING</span>
+        <div class="cover-graphic">
+          <div class="flow-diagram">
+            <span class="flow-node">Learner<br>data</span><span class="flow-arrow">→</span>
+            <span class="flow-node active">AI<br>agents</span><span class="flow-arrow">→</span>
+            <span class="flow-node">Learning<br>path</span>
+          </div>
+        </div>
+        <span class="cover-caption">PERSONALISED LEARNING</span>
+      </div>
+      <div class="project-body">
+        <span class="project-label">AGENTIC AI · REAL-TIME SYSTEMS</span>
+        <h3>Adaptive Learning Platform</h3>
+        <p>An AI-driven learning system designed to adapt recommendations and explanations to learner knowledge states.</p>
+        <div class="tags"><span>Python</span><span>Kafka</span><span>Spark</span><span>FastAPI</span><span>React</span><span>LLMs</span></div>
+        <div class="project-actions">
+          <button class="text-button case-toggle" aria-expanded="false">Read case study +</button>
+          <a class="repo-link" href="https://github.com/" target="_blank" rel="noopener noreferrer" data-repo-placeholder>GitHub ↗</a>
+        </div>
+        <div class="case-study">
+          <h4>Problem</h4>
+          <p>Learning experiences can be too generic when learner progress and knowledge gaps are not considered.</p>
+          <h4>Approach</h4>
+          <ul>
+            <li>Explore Bayesian Knowledge Tracing for modelling learner knowledge.</li>
+            <li>Separate recommendation and explanation responsibilities into specialised agents.</li>
+            <li>Design an event-driven flow using Kafka and Spark Streaming, with FastAPI and React for application delivery.</li>
+          </ul>
+          <h4>What to demonstrate</h4>
+          <p>Add an architecture diagram, an example learner journey, evaluation methodology, and a live demo or repository.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="project-card" data-category="ml" data-search="pmsm permanent magnet synchronous motor electric vehicle simulation control matlab simulink python tensorflow keras">
+      <div class="project-cover blue">
+        <span class="cover-label">02 / EV ENGINEERING</span>
+        <div class="cover-graphic">
+          <svg class="signal-svg" viewBox="0 0 320 100" role="img" aria-label="Illustrative motor signal waveform">
+            <g stroke="#8ba5c6" stroke-opacity=".25">
+              <path d="M0 20H320 M0 50H320 M0 80H320"/>
+              <path d="M40 0V100 M80 0V100 M120 0V100 M160 0V100 M200 0V100 M240 0V100 M280 0V100"/>
+            </g>
+            <path d="M0 50 C15 0 25 0 40 50 S65 100 80 50 S105 0 120 50 S145 100 160 50 S185 0 200 50 S225 100 240 50 S265 0 280 50 S305 100 320 50" fill="none" stroke="#72f1c0" stroke-width="2.5"/>
+            <path d="M0 50 C15 75 25 75 40 50 S65 25 80 50 S105 75 120 50 S145 25 160 50 S185 75 200 50 S225 25 240 50 S265 75 280 50 S305 25 320 50" fill="none" stroke="#86adff" stroke-width="2"/>
+          </svg>
+        </div>
+        <span class="cover-caption">MODELLING · CONTROL</span>
+      </div>
+      <div class="project-body">
+        <span class="project-label">AI · SIMULATION</span>
+        <h3>AI-Optimised PMSM EV Simulation</h3>
+        <p>An interactive simulation and control project focused on Permanent Magnet Synchronous Motors for electric vehicles.</p>
+        <div class="tags"><span>MATLAB</span><span>Simulink</span><span>Python</span><span>TensorFlow</span></div>
+        <div class="project-actions">
+          <button class="text-button case-toggle" aria-expanded="false">Read case study +</button>
+          <a class="repo-link" href="https://github.com/" target="_blank" rel="noopener noreferrer" data-repo-placeholder>GitHub ↗</a>
+        </div>
+        <div class="case-study">
+          <h4>Problem</h4>
+          <p>EV motor behaviour and control require careful modelling and validation under changing operating conditions.</p>
+          <h4>Approach</h4>
+          <ul>
+            <li>Model the PMSM and relevant motor-control behaviour in MATLAB/Simulink.</li>
+            <li>Explore AI-assisted optimisation and connect the workflow with Python tools.</li>
+            <li>Compare simulation outputs using clearly defined operating conditions and metrics.</li>
+          </ul>
+          <h4>What to demonstrate</h4>
+          <p>Add simulation screenshots, control diagrams, validated performance measures, and a reproducible demo.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="project-card" data-category="ml" data-search="explainable ai inventory management shap lime demand forecasting streamlit prediction interpretation">
+      <div class="project-cover purple">
+        <span class="cover-label">03 / EXPLAINABLE AI</span>
+        <div class="cover-graphic">
+          <div class="flow-diagram" style="flex-direction:column">
+            <span class="flow-node">Input features</span><span class="flow-arrow">↓</span>
+            <span class="flow-node">ML prediction</span><span class="flow-arrow">↓</span>
+            <span class="flow-node active">Explanation</span>
+          </div>
+        </div>
+        <span class="cover-caption">INTERPRETABLE PREDICTIONS</span>
+      </div>
+      <div class="project-body">
+        <span class="project-label">MACHINE LEARNING · XAI</span>
+        <h3>Explainable AI Inventory System</h3>
+        <p>An inventory analytics application combining prediction concepts with explanations to help users interpret model output.</p>
+        <div class="tags"><span>Python</span><span>Streamlit</span><span>SHAP</span><span>LIME</span></div>
+        <div class="project-actions">
+          <button class="text-button case-toggle" aria-expanded="false">Read case study +</button>
+          <a class="repo-link" href="https://github.com/" target="_blank" rel="noopener noreferrer" data-repo-placeholder>GitHub ↗</a>
+        </div>
+        <div class="case-study">
+          <h4>Problem</h4>
+          <p>Inventory predictions are harder to trust when users cannot understand which inputs influence the output.</p>
+          <h4>Approach</h4>
+          <ul>
+            <li>Organise inventory features and prediction workflows in a Streamlit interface.</li>
+            <li>Use explainability techniques such as SHAP or LIME where appropriate.</li>
+            <li>Present feature contributions alongside model output.</li>
+          </ul>
+          <h4>What to demonstrate</h4>
+          <p>Add a sample prediction, explanation visualisation, validation metrics, and the limitations of the model.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="project-card" data-category="ml" data-search="customer churn prediction classification xgboost scikit learn weights biases wandb feature engineering">
+      <div class="project-cover green">
+        <span class="cover-label">04 / PREDICTIVE MODELLING</span>
+        <div class="cover-graphic">
+          <div class="flow-diagram" style="flex-direction:column">
+            <span class="flow-node">Customer data</span><span class="flow-arrow">↓</span>
+            <span class="flow-node">Churn model</span><span class="flow-arrow">↓</span>
+            <span class="flow-node active">Risk insights</span>
+          </div>
+        </div>
+        <span class="cover-caption">DATA → PREDICTION</span>
+      </div>
+      <div class="project-body">
+        <span class="project-label">CLASSIFICATION · MLOPS</span>
+        <h3>Customer Churn Prediction</h3>
+        <p>A machine learning workflow for identifying churn risk through data preparation, model training, evaluation, and experiment tracking.</p>
+        <div class="tags"><span>Python</span><span>Scikit-learn</span><span>XGBoost</span><span>W&amp;B</span></div>
+        <div class="project-actions">
+          <button class="text-button case-toggle" aria-expanded="false">Read case study +</button>
+          <a class="repo-link" href="https://github.com/" target="_blank" rel="noopener noreferrer" data-repo-placeholder>GitHub ↗</a>
+        </div>
+        <div class="case-study">
+          <h4>Problem</h4>
+          <p>Customer churn analysis can help teams investigate patterns associated with customer attrition.</p>
+          <h4>Approach</h4>
+          <ul>
+            <li>Prepare data and engineer relevant features.</li>
+            <li>Compare classification models using suitable metrics.</li>
+            <li>Track experiments to make model development easier to reproduce.</li>
+          </ul>
+          <h4>What to demonstrate</h4>
+          <p>Report actual precision, recall, F1-score, and baseline comparisons only after verifying them on held-out data.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="project-card" data-category="software" data-search="buildtrack construction project management react fastapi postgresql jwt authentication CRUD">
+      <div class="project-cover orange">
+        <span class="cover-label">05 / FULL-STACK DEVELOPMENT</span>
+        <div class="cover-graphic">
+          <div class="flow-diagram">
+            <span class="flow-node">React UI</span><span class="flow-arrow">→</span>
+            <span class="flow-node active">REST API</span><span class="flow-arrow">→</span>
+            <span class="flow-node">Database</span>
+          </div>
+        </div>
+        <span class="cover-caption">FULL-STACK WORKFLOW</span>
+      </div>
+      <div class="project-body">
+        <span class="project-label">FULL-STACK · WEB APPLICATION</span>
+        <h3>BuildTrack Project Manager</h3>
+        <p>A construction project management application with a React frontend, FastAPI backend, and PostgreSQL persistence.</p>
+        <div class="tags"><span>React</span><span>FastAPI</span><span>PostgreSQL</span><span>JWT</span></div>
+        <div class="project-actions">
+          <button class="text-button case-toggle" aria-expanded="false">Read case study +</button>
+          <a class="repo-link" href="https://github.com/" target="_blank" rel="noopener noreferrer" data-repo-placeholder>GitHub ↗</a>
+        </div>
+        <div class="case-study">
+          <h4>Problem</h4>
+          <p>Project records need a consistent way to capture details and manage updates across the user interface and backend.</p>
+          <h4>Approach</h4>
+          <ul>
+            <li>Build REST endpoints for project creation, reading, updating, and deletion.</li>
+            <li>Connect the React UI to the API and PostgreSQL data layer.</li>
+            <li>Implement authentication and protected routes where configured.</li>
+          </ul>
+          <h4>What to demonstrate</h4>
+          <p>Add a screen recording, screenshots, API documentation, and details of your authentication implementation.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="project-card" data-category="vision" data-search="invoice verification system yolo OCR computer vision document extraction OpenCV automation">
+      <div class="project-cover red">
+        <span class="cover-label">06 / COMPUTER VISION</span>
+        <div class="cover-graphic">
+          <div class="flow-diagram" style="flex-direction:column">
+            <span class="flow-node">Invoice image</span><span class="flow-arrow">↓</span>
+            <span class="flow-node">YOLO + OCR</span><span class="flow-arrow">↓</span>
+            <span class="flow-node active">Validation</span>
+          </div>
+        </div>
+        <span class="cover-caption">DOCUMENT UNDERSTANDING</span>
+      </div>
+      <div class="project-body">
+        <span class="project-label">COMPUTER VISION · AUTOMATION</span>
+        <h3>Invoice Verification System</h3>
+        <p>A document-processing workflow exploring object detection and OCR for extracting invoice information and supporting verification.</p>
+        <div class="tags"><span>Python</span><span>YOLO</span><span>OCR</span><span>OpenCV</span></div>
+        <div class="project-actions">
+          <button class="text-button case-toggle" aria-expanded="false">Read case study +</button>
+          <a class="repo-link" href="https://github.com/" target="_blank" rel="noopener noreferrer" data-repo-placeholder>GitHub ↗</a>
+        </div>
+        <div class="case-study">
+          <h4>Problem</h4>
+          <p>Manually reviewing invoice documents can be repetitive and may require extracting structured fields from varied layouts.</p>
+          <h4>Approach</h4>
+          <ul>
+            <li>Preprocess document images with computer vision tools.</li>
+            <li>Explore object detection and OCR for identifying and extracting relevant fields.</li>
+            <li>Compare extracted values against verification rules.</li>
+          </ul>
+          <h4>What to demonstrate</h4>
+          <p>Add sample input/output images, field extraction accuracy, and error-handling examples.</p>
+        </div>
+      </div>
+    </article>
+  </div>
+  <p class="section-intro">Before publishing, replace placeholder repository URLs with your real repositories and add verified metrics, screenshots, and demos.</p>
+</section>
+
+<section class="section container reveal" id="skills">
+  <div class="section-head">
+    <span class="index">04 / TECHNICAL SKILLS</span>
+    <h2>Tools I use to <span class="heading-muted">build.</span></h2>
+  </div>
+
+  <div class="skills-grid">
+    <article class="skill-card"><span class="skill-symbol">⌘</span><div><h3>Programming</h3><p>Python · JavaScript · SQL · C/C++ fundamentals</p></div></article>
+    <article class="skill-card"><span class="skill-symbol">✳</span><div><h3>AI & Machine Learning</h3><p>Scikit-learn · TensorFlow/Keras · PyTorch fundamentals · XGBoost · Model evaluation</p></div></article>
+    <article class="skill-card"><span class="skill-symbol">◈</span><div><h3>Generative & Agentic AI</h3><p>LLM applications · RAG concepts · Prompt engineering · Agent workflows · Explainable AI</p></div></article>
+    <article class="skill-card"><span class="skill-symbol">▧</span><div><h3>Data & Streaming</h3><p>Pandas · NumPy · Kafka · Spark Streaming · Hadoop ecosystem fundamentals</p></div></article>
+    <article class="skill-card"><span class="skill-symbol">⌘</span><div><h3>Web & Backend</h3><p>React · HTML · CSS · FastAPI · Flask · Node.js/Express · REST APIs</p></div></article>
+    <article class="skill-card"><span class="skill-symbol">⚙</span><div><h3>Developer Tools</h3><p>Git · GitHub · Docker · Jupyter · Google Colab · Streamlit · Weights &amp; Biases</p></div></article>
+  </div>
+</section>
+
+<section class="section container reveal" id="experience">
+  <div class="section-head">
+    <span class="index">05 / EXPERIENCE</span>
+    <h2>Learning by <span class="heading-muted">building.</span></h2>
+  </div>
+
+  <div class="timeline">
+    <article class="timeline-card">
+      <span class="timeline-date">PROJECT-BASED EXPERIENCE</span>
+      <h3>AI/ML Engineering & Application Development</h3>
+      <div class="role">Academic and independent projects</div>
+      <p>Developed projects across machine learning, explainable AI, computer vision, LLM-powered workflows, streaming data, and full-stack application development. Add specific project ownership, outcomes, and verified dates here.</p>
+    </article>
+
+    <article class="timeline-card">
+      <span class="timeline-date">INTERNSHIPS / PROFESSIONAL EXPERIENCE</span>
+      <h3>Add your official role here</h3>
+      <div class="role">Organisation · Employment dates</div>
+      <p>Replace this card with your actual internship or job title, organisation, dates, responsibilities, technologies, and measurable achievements. Remove this card if you have no relevant professional experience to list.</p>
+    </article>
+  </div>
+</section>
+
+<section class="section container reveal" id="education">
+  <div class="section-head">
+    <span class="index">06 / EDUCATION</span>
+    <h2>Academic <span class="heading-muted">foundation.</span></h2>
+  </div>
+
+  <div class="education-grid">
+    <article class="edu-card">
+      <span class="edu-label">UNDERGRADUATE DEGREE</span>
+      <h3>Bachelor of Engineering — Artificial Intelligence &amp; Machine Learning</h3>
+      <p>RV College of Engineering (RVCE), Bengaluru</p>
+      <div class="edu-bottom"><span>2022–2026</span><strong>CGPA: 8.24 / 10</strong></div>
+    </article>
+
+    <article class="edu-card">
+      <span class="edu-label">PROFESSIONAL DEVELOPMENT</span>
+      <h3>Certifications &amp; Technical Learning</h3>
+      <p>Add your verified certifications, course names, issuing organisations, and certificate links here.</p>
+      <div class="edu-bottom"><span>Verified credentials only</span><strong>Continuous learning</strong></div>
+    </article>
+  </div>
+</section>
+
+<section class="section container reveal" id="github">
+  <div class="section-head">
+    <span class="index">07 / OPEN SOURCE</span>
+    <h2>Built in public. <span class="heading-muted">Shared on GitHub.</span></h2>
+    <p class="section-intro">Browse my repositories and explore implementation details, source code, and project documentation.</p>
+  </div>
+
+  <div class="github-panel">
+    <div class="github-header">
+      <div>
+        <h3>GitHub repositories</h3>
+        <span class="github-user" id="github-user-label">@YOUR_GITHUB_USERNAME</span>
+      </div>
+      <a class="btn" id="github-profile-link" href="https://github.com/" target="_blank" rel="noopener noreferrer">View profile ↗</a>
+    </div>
+    <div class="github-grid" id="github-repositories" aria-live="polite">
+      <div class="github-repo"><a href="https://github.com/" target="_blank" rel="noopener noreferrer">Connect GitHub</a><p>Set your username in the JavaScript configuration to load your public repositories.</p><span class="github-meta">GITHUB API</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section container reveal" id="contact">
+  <div class="contact-panel">
+    <span class="index">08 / CONTACT</span>
+    <h2>Let's build something <span class="gradient">meaningful.</span></h2>
+    <p>I'm interested in AI/ML engineering, agentic AI, and software development opportunities. Reach out to discuss a role, project, or collaboration.</p>
+
+    <div class="contact-grid">
+      <div class="contact-details">
+  <div class="contact-item">
+    <span>EMAIL</span>
+    <a id="contact-email-link" href="mailto:jazzabhinav08@gmail.com">
+      jazzabhinav08@gmail.com
+    </a>
+  </div>
+
+  <div class="contact-item">
+    <span>LINKEDIN</span>
+    <a id="linkedin-link" href="https://linkedin.com/in/abhinav-187b91291"
+       target="_blank"
+       rel="noopener noreferrer">
+      View LinkedIn profile ↗
+    </a>
+  </div>
+
+  <div class="contact-item">
+    <span>GITHUB</span>
+    <a id="contact-github-link" href="https://github.com/Abhinav-ai01"
+       target="_blank"
+       rel="noopener noreferrer">
+      github.com/Abhinav-ai01 ↗
+    </a>
+  </div>
+
+  <div class="contact-item">
+    <span>LOCATION</span>
+    <span style="font-family:inherit;color:var(--text)">
+      Bengaluru, India
+    </span>
+  </div>
+
+  <button class="btn" id="copy-email" type="button">
+    Copy email address
+  </button>
+</div>
+
+      <!-- Configure Formspree or your own backend before expecting submissions. -->
+      <form class="contact-form" id="contact-form">
+        <div class="form-row">
+          <label>Name<input name="name" required maxlength="100" autocomplete="name" placeholder="Your name"></label>
+          <label>Email<input name="email" type="email" required maxlength="150" autocomplete="email" placeholder="you@example.com"></label>
+        </div>
+        <label>Subject<input name="subject" required maxlength="150" placeholder="What would you like to discuss?"></label>
+        <label>Message<textarea name="message" required maxlength="5000" placeholder="Write your message..."></textarea></label>
+        <button class="btn btn-primary" type="submit">Prepare message ↗</button>
+        <p class="form-status" id="form-status" aria-live="polite">The form opens your email application unless you configure a form endpoint.</p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <span>© <span id="year"></span> Abhinav. Built with curiosity and code.</span>
+  <span>AI/ML · Agentic AI · Software Engineering</span>
+  <a href="#home">Back to top ↑</a>
+</footer>
+
+<button class="terminal-launcher" id="open-terminal" type="button">Open terminal <kbd>Ctrl</kbd> <kbd>K</kbd></button>
+<div class="floating-tools">
+  <button class="float-button" id="back-top" aria-label="Back to top" title="Back to top">↑</button>
+</div>
+
+<dialog id="terminal-dialog">
+  <div class="dialog-head">
+    <h3>abhinav@portfolio:~</h3>
+    <button class="dialog-close" data-close="terminal-dialog" aria-label="Close terminal">✕</button>
+  </div>
+  <div class="dialog-body">
+    <div class="terminal-window">
+      <div class="terminal-bar">Interactive portfolio terminal · Type help</div>
+      <div class="terminal-output" id="terminal-output" aria-live="polite"><div class="terminal-line system">Welcome! Type help to see available commands.</div></div>
+      <form class="terminal-input-row" id="terminal-form">
+        <span class="terminal-prompt">visitor@abhinav:~$</span>
+        <input id="terminal-input" autocomplete="off" spellcheck="false" aria-label="Terminal command">
+      </form>
+    </div>
+  </div>
+</dialog>
+
+<div class="chat-widget" id="portfolio-chat">
+  <div class="chat-panel" id="chat-panel">
+    <div class="chat-head">
+      <div><strong>Ask about my portfolio</strong><small>Portfolio assistant · instant answers</small></div>
+      <button class="dialog-close" id="close-chat" aria-label="Close chatbot">✕</button>
+    </div>
+    <div class="chat-messages" id="chat-messages" aria-live="polite">
+      <div class="chat-message bot">Hi! Ask me about Abhinav's projects, skills, education, or technologies.</div>
+    </div>
+    <form class="chat-form" id="chat-form">
+      <input id="chat-input" maxlength="500" required placeholder="Ask a question..." aria-label="Ask the portfolio assistant">
+      <button type="submit">Send</button>
+    </form>
+    <div class="chat-note">This demo uses built-in answers. It does not send messages to an external AI service.</div>
+  </div>
+  <button class="chat-launcher" id="open-chat" type="button">✳ Ask my AI portfolio</button>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+/* =====================================================
+   ABHINAV PORTFOLIO — CONFIGURATION
+   Update these values before publishing.
+   ===================================================== */
+
+const CONFIG = {
+  name: "Abhinav",
+  email: "jazzabhinav08@gmail.com",
+  location: "Bengaluru, India",
+
+  githubUsername: "Abhinav-ai01",
+  githubUrl: "https://github.com/Abhinav-ai01",
+  linkedinUrl: "https://linkedin.com/in/abhinav-187b91291",
+
+  resumePath: "assets/Abhinav_Resume.pdf",
+  profileImagePath: "assets/profile.jpg",
+
+  // Configure these services before using them.
+  formEndpoint: "",
+  chatbotEndpoint: ""
+};
+
+
+/* =====================================================
+   GENERAL UTILITIES
+   ===================================================== */
+
+const $ = (selector, root = document) => root.querySelector(selector);
+const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+
+$("#year").textContent = new Date().getFullYear();
+
+let toastTimeout;
+
+function toast(message) {
+  const element = $("#toast");
+  element.textContent = message;
+  element.classList.add("show");
+
+  clearTimeout(toastTimeout);
+
+  toastTimeout = setTimeout(() => {
+    element.classList.remove("show");
+  }, 2400);
+}
+
+const prefersReducedMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)"
+).matches;
+
+
+/* =====================================================
+   PERSONAL PROFILE CONFIGURATION
+   ===================================================== */
+
+function configureProfile() {
+  const githubIsConfigured =
+    CONFIG.githubUsername &&
+    CONFIG.githubUsername !== "YOUR_GITHUB_USERNAME";
+
+  const githubUrl = githubIsConfigured
+    ? `https://github.com/${encodeURIComponent(CONFIG.githubUsername)}`
+    : "https://github.com/";
+
+  const emailUrl = `mailto:${CONFIG.email}`;
+
+  $("#contact-email-link").href = emailUrl;
+  $("#contact-email-link").textContent = CONFIG.email;
+
+  $("#linkedin-link").href = CONFIG.linkedinUrl;
+
+  try {
+    const url = new URL(CONFIG.linkedinUrl);
+
+    if (
+      url.hostname === "www.linkedin.com" ||
+      url.hostname === "linkedin.com"
+    ) {
+      $("#linkedin-link").textContent =
+        CONFIG.linkedinUrl === "https://www.linkedin.com/"
+          ? "Add your LinkedIn profile ↗"
+          : "View LinkedIn profile ↗";
+    }
+  } catch (error) {
+    console.warn("Check the LinkedIn URL in CONFIG.");
+  }
+
+  $("#github-profile-link").href = githubUrl;
+  $("#contact-github-link").href = githubUrl;
+
+  $("#github-user-label").textContent = githubIsConfigured
+    ? `@${CONFIG.githubUsername}`
+    : "@YOUR_GITHUB_USERNAME";
+
+  $("#copy-email").addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(CONFIG.email);
+      toast("Email address copied.");
+    } catch {
+      window.location.href = emailUrl;
+    }
+  });
+
+  $("#resume-button").addEventListener("click", (event) => {
+    const resumePath = $("#resume-button").getAttribute("href");
+
+    if (resumePath.includes("Abhinav_Resume.pdf")) {
+      // The browser will download the file if it exists.
+      // A missing file should be fixed by adding the PDF to /assets.
+      console.info("Expected resume file:", resumePath);
+    }
+  });
+}
+
+configureProfile();
+
+
+/* =====================================================
+   MOBILE NAVIGATION
+   ===================================================== */
+
+const nav = $("#main-nav");
+const menuToggle = $("#menu-toggle");
+
+menuToggle.addEventListener("click", () => {
+  const isOpen = nav.classList.toggle("open");
+
+  menuToggle.setAttribute("aria-expanded", String(isOpen));
+  menuToggle.setAttribute(
+    "aria-label",
+    isOpen ? "Close navigation" : "Open navigation"
+  );
+
+  menuToggle.textContent = isOpen ? "✕" : "☰";
+});
+
+$$(".nav a").forEach((link) => {
+  link.addEventListener("click", () => {
+    nav.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Open navigation");
+    menuToggle.textContent = "☰";
+  });
+});
+
+
+/* =====================================================
+   DARK / LIGHT THEME
+   ===================================================== */
+
+const themeToggle = $("#theme-toggle");
+
+try {
+  if (localStorage.getItem("abhinav-theme") === "light") {
+    document.body.classList.add("light");
+  }
+} catch {
+  // The theme still works if local storage is unavailable.
+}
+
+function updateThemeButton() {
+  const isLight = document.body.classList.contains("light");
+
+  themeToggle.textContent = isLight ? "☾" : "☼";
+  themeToggle.setAttribute(
+    "aria-label",
+    isLight ? "Switch to dark theme" : "Switch to light theme"
+  );
+
+  document.querySelector('meta[name="theme-color"]')
+    .setAttribute("content", isLight ? "#f5f8fc" : "#080d18");
+}
+
+updateThemeButton();
+
+themeToggle.addEventListener("click", () => {
+  document.body.classList.toggle("light");
+
+  try {
+    localStorage.setItem(
+      "abhinav-theme",
+      document.body.classList.contains("light") ? "light" : "dark"
+    );
+  } catch {
+    // Theme changes remain available for the current session.
+  }
+
+  updateThemeButton();
+});
+
+
+/* =====================================================
+   SCROLL PROGRESS AND BACK TO TOP
+   ===================================================== */
+
+const progress = $(".progress span");
+const backTop = $("#back-top");
+
+function updateScroll() {
+  const scrollable =
+    document.documentElement.scrollHeight - window.innerHeight;
+
+  const percentage = scrollable > 0
+    ? (window.scrollY / scrollable) * 100
+    : 0;
+
+  progress.style.width = `${percentage}%`;
+  backTop.classList.toggle("visible", window.scrollY > 450);
+}
+
+window.addEventListener("scroll", updateScroll, { passive: true });
+window.addEventListener("resize", updateScroll);
+updateScroll();
+
+backTop.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: prefersReducedMotion ? "auto" : "smooth"
+  });
+});
+
+
+/* =====================================================
+   ACTIVE NAVIGATION
+   ===================================================== */
+
+if ("IntersectionObserver" in window) {
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+
+        $$(".nav a").forEach((link) => {
+          link.classList.toggle(
+            "active",
+            link.hash === `#${entry.target.id}`
+          );
+        });
+      });
+    },
+    { rootMargin: "-25% 0px -60% 0px" }
+  );
+
+  $$("main section[id]").forEach((section) => {
+    sectionObserver.observe(section);
+  });
+}
+
+
+/* =====================================================
+   REVEAL ANIMATIONS
+   ===================================================== */
+
+if (
+  "IntersectionObserver" in window &&
+  !prefersReducedMotion
+) {
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.08 }
+  );
+
+  $$(".reveal").forEach((element) => {
+    revealObserver.observe(element);
+  });
+} else {
+  $$(".reveal").forEach((element) => {
+    element.classList.add("visible");
+  });
+}
+
+
+/* =====================================================
+   PROJECT SEARCH AND FILTER
+   ===================================================== */
+
+const projectCards = $$(".project-card");
+const projectSearch = $("#project-search");
+const projectCount = $("#project-count");
+const filterButtons = $$(".filter");
+
+let activeCategory = "all";
+
+function filterProjects() {
+  const query = projectSearch.value.trim().toLowerCase();
+  let visible = 0;
+
+  projectCards.forEach((card) => {
+    const categoryMatches =
+      activeCategory === "all" ||
+      card.dataset.category === activeCategory;
+
+    const searchableText = [
+      card.dataset.search || "",
+      card.innerText || ""
+    ].join(" ").toLowerCase();
+
+    const queryMatches =
+      query.length === 0 || searchableText.includes(query);
+
+    const shouldShow = categoryMatches && queryMatches;
+
+    card.hidden = !shouldShow;
+
+    if (shouldShow) visible++;
+  });
+
+  projectCount.textContent =
+    `Showing ${visible} of ${projectCards.length} projects`;
+}
+
+filterButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    activeCategory = button.dataset.filter || "all";
+
+    filterButtons.forEach((item) => {
+      const active = item === button;
+
+      item.classList.toggle("active", active);
+      item.setAttribute("aria-pressed", String(active));
+    });
+
+    filterProjects();
+  });
+});
+
+projectSearch.addEventListener("input", filterProjects);
+
+filterProjects();
+
+
+/* =====================================================
+   EXPANDABLE PROJECT CASE STUDIES
+   ===================================================== */
+
+$$(".case-toggle").forEach((button) => {
+  button.addEventListener("click", () => {
+    const card = button.closest(".project-card");
+    const expanded = card.classList.toggle("expanded");
+
+    button.setAttribute("aria-expanded", String(expanded));
+    button.textContent = expanded
+      ? "Close case study −"
+      : "Read case study +";
+  });
+});
+
+
+/* =====================================================
+   GITHUB PUBLIC REPOSITORY INTEGRATION
+   ===================================================== */
+
+const githubContainer = $("#github-repositories");
+
+function makeElement(tag, className, content) {
+  const element = document.createElement(tag);
+
+  if (className) element.className = className;
+  if (content !== undefined) element.textContent = content;
+
+  return element;
+}
+
+function renderGitHubFallback(message) {
+  githubContainer.replaceChildren();
+
+  const card = makeElement("div", "github-repo");
+  const heading = makeElement("strong", "", "GitHub repositories");
+  const description = makeElement("p", "", message);
+
+  const link = makeElement("a", "", "Open GitHub ↗");
+  link.href = CONFIG.githubUrl;
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+
+  card.append(heading, description, link);
+  githubContainer.append(card);
+}
+
+async function loadGitHubRepositories() {
+  const username = CONFIG.githubUsername.trim();
+
+  if (!username || username === "YOUR_GITHUB_USERNAME") {
+    renderGitHubFallback(
+      "Set CONFIG.githubUsername in the JavaScript section to load your real public repositories."
+    );
+    return;
+  }
+
+  const apiUrl =
+    `https://api.github.com/users/${encodeURIComponent(username)}/repos?sort=updated&per_page=6&type=owner`;
+
+  try {
+    const response = await fetch(apiUrl, {
+      headers: { Accept: "application/vnd.github+json" }
+    });
+
+    if (!response.ok) {
+      throw new Error(
+        response.status === 403
+          ? "GitHub API rate limit reached."
+          : "Unable to load public repositories."
+      );
+    }
+
+    const repositories = await response.json();
+
+    if (!Array.isArray(repositories) || repositories.length === 0) {
+      renderGitHubFallback(
+        "No public repositories were returned. Check the username and public repository settings."
+      );
+      return;
+    }
+
+    githubContainer.replaceChildren();
+
+    repositories
+      .filter((repo) => !repo.fork)
+      .slice(0, 6)
+      .forEach((repo) => {
+        const card = makeElement("article", "github-repo");
+
+        const title = makeElement("a", "", repo.name);
+        title.href = repo.html_url;
+        title.target = "_blank";
+        title.rel = "noopener noreferrer";
+
+        const description = makeElement(
+          "p",
+          "",
+          repo.description || "No repository description provided."
+        );
+
+        const language = repo.language || "Language unspecified";
+
+        const details = makeElement(
+          "div",
+          "github-meta",
+          `${language} · ★ ${repo.stargazers_count} · Updated ${new Date(repo.updated_at).toLocaleDateString()}`
+        );
+
+        card.append(title, description, details);
+        githubContainer.append(card);
+      });
+
+    if (!githubContainer.children.length) {
+      renderGitHubFallback(
+        "No non-fork public repositories were found."
+      );
+    }
+  } catch (error) {
+    renderGitHubFallback(
+      `${error.message} You can still visit the GitHub profile using the link above.`
+    );
+  }
+}
+
+loadGitHubRepositories();
+
+
+/* =====================================================
+   CONTACT FORM
+   ===================================================== */
+
+const contactForm = $("#contact-form");
+const formStatus = $("#form-status");
+
+contactForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  if (!contactForm.reportValidity()) return;
+
+  const formData = new FormData(contactForm);
+
+  const name = String(formData.get("name") || "").trim();
+  const email = String(formData.get("email") || "").trim();
+  const subject = String(formData.get("subject") || "").trim();
+  const message = String(formData.get("message") || "").trim();
+
+  if (!name || !email || !subject || !message) {
+    formStatus.textContent = "Please complete every field.";
+    return;
+  }
+
+  if (CONFIG.formEndpoint) {
+    try {
+      const response = await fetch(CONFIG.formEndpoint, {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" }
+      });
+
+      if (!response.ok) {
+        throw new Error("The form service rejected the submission.");
+      }
+
+      formStatus.textContent =
+        "Message submitted successfully. Thank you!";
+
+      contactForm.reset();
+      return;
+    } catch (error) {
+      formStatus.textContent =
+        "Submission failed. Please email me directly instead.";
+
+      return;
+    }
+  }
+
+  const emailSubject = encodeURIComponent(subject);
+  const emailBody = encodeURIComponent(
+    `Name: ${name}\nEmail: ${email}\n\n${message}`
+  );
+
+  formStatus.textContent =
+    "Opening your email application. Send the prepared message to complete contact.";
+
+  window.location.href =
+    `mailto:${CONFIG.email}?subject=${emailSubject}&body=${emailBody}`;
+});
+
+
+/* =====================================================
+   INTERACTIVE TERMINAL
+   ===================================================== */
+
+const terminalDialog = $("#terminal-dialog");
+const terminalOutput = $("#terminal-output");
+const terminalInput = $("#terminal-input");
+
+$("#open-terminal").addEventListener("click", openTerminal);
+
+function openTerminal() {
+  if (!terminalDialog.open) terminalDialog.showModal();
+
+  setTimeout(() => terminalInput.focus(), 50);
+}
+
+$$("[data-close='terminal-dialog']").forEach((button) => {
+  button.addEventListener("click", () => terminalDialog.close());
+});
+
+terminalDialog.addEventListener("click", (event) => {
+  if (event.target === terminalDialog) terminalDialog.close();
+});
+
+const terminalCommands = {
+  help:
+    "Available commands:\n" +
+    "  about      Learn about Abhinav\n" +
+    "  projects   List selected projects\n" +
+    "  skills     Show technical skills\n" +
+    "  education  Show education details\n" +
+    "  contact    Display contact email\n" +
+    "  github     Open GitHub profile\n" +
+    "  linkedin   Open LinkedIn profile\n" +
+    "  resume     Open the resume PDF\n" +
+    "  clear      Clear terminal output\n" +
+    "  date       Show today's date",
+
+  about:
+    "Abhinav is an AI/ML engineer focused on machine learning, agentic AI, computer vision, and software development.",
+
+  projects:
+    "Selected projects:\n" +
+    "  1. Adaptive Learning Platform\n" +
+    "  2. AI-Optimised PMSM EV Simulation\n" +
+    "  3. Explainable AI Inventory System\n" +
+    "  4. Customer Churn Prediction\n" +
+    "  5. BuildTrack Project Manager\n" +
+    "  6. Invoice Verification System",
+
+  skills:
+    "Python, machine learning, TensorFlow/Keras, Scikit-learn, XGBoost, LLM applications, Kafka, Spark, FastAPI, React, SQL, Git, Docker.",
+
+  education:
+    "B.E. in Artificial Intelligence and Machine Learning, RV College of Engineering, Bengaluru. 2022–2026. CGPA: 8.24/10.",
+
+  contact: `Email: ${CONFIG.email}`,
+
+  date: new Date().toLocaleDateString()
+};
+
+function terminalWrite(text, type = "") {
+  const line = makeElement("div", `terminal-line ${type}`, text);
+  terminalOutput.append(line);
+  terminalOutput.scrollTop = terminalOutput.scrollHeight;
+}
+
+function runTerminalCommand(rawCommand) {
+  const command = rawCommand.trim().toLowerCase();
+
+  if (!command) return;
+
+  terminalWrite(`visitor@abhinav:~$ ${rawCommand}`);
+
+  if (command === "clear") {
+    terminalOutput.replaceChildren();
+    return;
+  }
+
+  if (command === "github") {
+    terminalWrite("Opening GitHub profile...", "system");
+    window.open(
+      $("#github-profile-link").href,
+      "_blank",
+      "noopener,noreferrer"
+    );
+    return;
+  }
+
+  if (command === "linkedin") {
+    terminalWrite("Opening LinkedIn profile...", "system");
+    window.open(
+      CONFIG.linkedinUrl,
+      "_blank",
+      "noopener,noreferrer"
+    );
+    return;
+  }
+
+  if (command === "resume") {
+    terminalWrite("Opening the resume PDF...", "system");
+    window.open(
+      "assets/Abhinav_Resume.pdf",
+      "_blank",
+      "noopener,noreferrer"
+    );
+    return;
+  }
+
+  if (command === "projects") {
+    terminalWrite(terminalCommands.projects, "system");
+
+    $("#projects").scrollIntoView({
+      behavior: prefersReducedMotion ? "auto" : "smooth"
+    });
+
+    return;
+  }
+
+  if (command === "about") {
+    terminalWrite(terminalCommands.about, "system");
+    return;
+  }
+
+  if (command === "skills") {
+    terminalWrite(terminalCommands.skills, "system");
+    return;
+  }
+
+  if (command === "education") {
+    terminalWrite(terminalCommands.education, "system");
+    return;
+  }
+
+  if (command === "contact") {
+    terminalWrite(terminalCommands.contact, "system");
+    return;
+  }
+
+  if (command === "date") {
+    terminalWrite(terminalCommands.date, "system");
+    return;
+  }
+
+  if (command === "help") {
+    terminalWrite(terminalCommands.help, "system");
+    return;
+  }
+
+  terminalWrite(
+    `Command not found: ${command}. Type help to see available commands.`,
+    "error"
+  );
+}
+
+$("#terminal-form").addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  runTerminalCommand(terminalInput.value);
+  terminalInput.value = "";
+});
+
+document.addEventListener("keydown", (event) => {
+  if (
+    (event.ctrlKey || event.metaKey) &&
+    event.key.toLowerCase() === "k"
+  ) {
+    event.preventDefault();
+
+    if (terminalDialog.open) {
+      terminalDialog.close();
+    } else {
+      openTerminal();
+    }
+  }
+
+  if (event.key === "Escape" && terminalDialog.open) {
+    terminalDialog.close();
+  }
+});
+
+
+/* =====================================================
+   PORTFOLIO CHATBOT
+   Built-in answers work without an API.
+   A real AI response can be enabled through a backend.
+   ===================================================== */
+
+const chatPanel = $("#chat-panel");
+const chatMessages = $("#chat-messages");
+const chatForm = $("#chat-form");
+const chatInput = $("#chat-input");
+
+$("#open-chat").addEventListener("click", () => {
+  chatPanel.classList.toggle("open");
+
+  if (chatPanel.classList.contains("open")) {
+    chatInput.focus();
+  }
+});
+
+$("#close-chat").addEventListener("click", () => {
+  chatPanel.classList.remove("open");
+});
+
+function addChatMessage(text, sender = "bot") {
+  const message = makeElement(
+    "div",
+    `chat-message ${sender}`,
+    text
+  );
+
+  chatMessages.append(message);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+
+  return message;
+}
+
+function getPortfolioAnswer(question) {
+  const q = question.toLowerCase();
+
+  if (/\b(hi|hello|hey|namaste)\b/.test(q)) {
+    return "Hello! I can explain Abhinav's background, projects, technical skills, education, and contact details. What would you like to know?";
+  }
+
+  if (q.includes("project") || q.includes("built") || q.includes("work")) {
+    return "Abhinav's selected projects include an Adaptive Learning Platform using agentic AI concepts, AI-Optimised PMSM EV Simulation, Explainable AI Inventory System, Customer Churn Prediction, BuildTrack Project Manager, and Invoice Verification System. Use the Projects section to read each case study.";
+  }
+
+  if (
+    q.includes("agentic") ||
+    q.includes("llm") ||
+    q.includes("generative") ||
+    q.includes("rag")
+  ) {
+    return "Abhinav explores LLM applications, agentic workflows, personalised recommendations, and real-time data processing. The Adaptive Learning Platform is the main project to explore these interests.";
+  }
+
+  if (
+    q.includes("skill") ||
+    q.includes("technology") ||
+    q.includes("tech stack") ||
+    q.includes("programming")
+  ) {
+    return "The portfolio lists Python, JavaScript, SQL, Scikit-learn, TensorFlow/Keras, XGBoost, Kafka, Spark, FastAPI, React, Git, Docker, and related tools. Please check the Skills section for the complete list.";
+  }
+
+  if (
+    q.includes("education") ||
+    q.includes("college") ||
+    q.includes("degree") ||
+    q.includes("cgpa")
+  ) {
+    return "Abhinav studied B.E. in Artificial Intelligence and Machine Learning at RV College of Engineering, Bengaluru, during 2022–2026. The listed CGPA is 8.24/10.";
+  }
+
+  if (
+    q.includes("experience") ||
+    q.includes("internship") ||
+    q.includes("job")
+  ) {
+    return "The portfolio highlights academic and project-based AI/ML and software development work. Refer to the Experience section for the details currently listed; add verified employer names and internship dates before publishing.";
+  }
+
+  if (
+    q.includes("github") ||
+    q.includes("repository") ||
+    q.includes("source code")
+  ) {
+    return "Use the GitHub section to browse public repositories. Configure the GitHub username in the JavaScript settings to load actual repositories.";
+  }
+
+  if (
+    q.includes("resume") ||
+    q.includes("cv")
+  ) {
+    return "Use the Download Resume button in the hero section. The PDF must be saved at assets/Abhinav_Resume.pdf for the download link to work.";
+  }
+
+  if (
+    q.includes("contact") ||
+    q.includes("email") ||
+    q.includes("linkedin")
+  ) {
+    return `You can contact Abhinav at ${CONFIG.email}. Update the email and LinkedIn URL in the configuration before publishing.`;
+  }
+
+  if (
+    q.includes("hire") ||
+    q.includes("opportunity") ||
+    q.includes("recruit")
+  ) {
+    return "For opportunities, review the projects and technical skills, then use the contact section to reach out. Add your actual resume, professional links, and verified work experience so recruiters can evaluate your profile.";
+  }
+
+  if (q.includes("pmsm") || q.includes("motor") || q.includes("electric vehicle")) {
+    return "The PMSM project focuses on simulation and AI-assisted optimisation concepts for Permanent Magnet Synchronous Motors used in electric vehicles. Its case study describes the modelling approach and suggested evidence to add.";
+  }
+
+  if (q.includes("inventory") || q.includes("explainable") || q.includes("shap") || q.includes("lime")) {
+    return "The Explainable AI Inventory System explores inventory analytics and interpretable predictions. The project mentions SHAP and LIME as explainability techniques.";
+  }
+
+  if (q.includes("churn") || q.includes("xgboost")) {
+    return "The Customer Churn Prediction project covers data preparation, classification, model evaluation, and experiment tracking with tools including Scikit-learn, XGBoost, and Weights & Biases.";
+  }
+
+  if (q.includes("thank")) {
+    return "You're welcome! Explore the project case studies or use the contact section if you would like to connect.";
+  }
+
+  return "I can answer questions about Abhinav's projects, skills, education, AI/ML interests, GitHub, and contact details. Try asking: 'What projects has Abhinav built?' or 'What are his technical skills?'";
+}
+
+async function getChatbotReply(question) {
+  if (CONFIG.chatbotEndpoint) {
+    try {
+      const response = await fetch(CONFIG.chatbotEndpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          question,
+          context: {
+            name: CONFIG.name,
+            focus: [
+              "AI/ML",
+              "Agentic AI",
+              "Computer Vision",
+              "Full-stack development"
+            ],
+            projects: projectCards.map((card) => ({
+              title: card.querySelector("h3")?.textContent || "",
+              description: card.querySelector(".project-body > p")?.textContent || ""
+            }))
+          }
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error("The chatbot service returned an error.");
+      }
+
+      const data = await response.json();
+
+      if (typeof data.answer === "string" && data.answer.trim()) {
+        return data.answer.trim();
+      }
+
+      throw new Error("The chatbot response was not in the expected format.");
+    } catch (error) {
+      console.error("Chatbot backend error:", error);
+      return "The connected AI service is temporarily unavailable. Here is a built-in answer instead: " +
+        getPortfolioAnswer(question);
+    }
+  }
+
+  return getPortfolioAnswer(question);
+}
+
+chatForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const question = chatInput.value.trim();
+
+  if (!question) return;
+
+  addChatMessage(question, "user");
+  chatInput.value = "";
+  chatInput.disabled = true;
+
+  const loadingMessage = addChatMessage("Thinking...", "bot");
+
+  try {
+    const answer = await getChatbotReply(question);
+    loadingMessage.textContent = answer;
+  } finally {
+    chatInput.disabled = false;
+    chatInput.focus();
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+});
+
+
+/* =====================================================
+   ANIMATED NEURAL NETWORK CANVAS
+   ===================================================== */
+
+const canvas = $("#neural-canvas");
+const canvasContext = canvas.getContext("2d");
+const heroArt = $("#hero-art");
+
+let canvasWidth = 0;
+let canvasHeight = 0;
+let nodes = [];
+let animationFrame = null;
+
+function resizeCanvas() {
+  const rect = heroArt.getBoundingClientRect();
+  const ratio = Math.min(window.devicePixelRatio || 1, 2);
+
+  canvasWidth = rect.width;
+  canvasHeight = rect.height;
+
+  canvas.width = Math.round(canvasWidth * ratio);
+  canvas.height = Math.round(canvasHeight * ratio);
+
+  canvas.style.width = `${canvasWidth}px`;
+  canvas.style.height = `${canvasHeight}px`;
+
+  canvasContext.setTransform(ratio, 0, 0, ratio, 0, 0);
+
+  const count = Math.max(22, Math.floor(canvasWidth / 17));
+
+  nodes = Array.from({ length: count }, () => ({
+    x: Math.random() * canvasWidth,
+    y: Math.random() * canvasHeight,
+    vx: (Math.random() - 0.5) * 0.35,
+    vy: (Math.random() - 0.5) * 0.35,
+    radius: Math.random() * 1.6 + 0.5
+  }));
+}
+
+function drawNeuralNetwork() {
+  if (!canvasWidth || !canvasHeight) return;
+
+  canvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
+
+  const isLight = document.body.classList.contains("light");
+  const rgb = isLight ? "25, 107, 100" : "114, 241, 192";
+  const maxDistance = 105;
+
+  for (let i = 0; i < nodes.length; i++) {
+    const node = nodes[i];
+
+    if (!prefersReducedMotion) {
+      node.x += node.vx;
+      node.y += node.vy;
+
+      if (node.x < 0 || node.x > canvasWidth) node.vx *= -1;
+      if (node.y < 0 || node.y > canvasHeight) node.vy *= -1;
+    }
+
+    for (let j = i + 1; j < nodes.length; j++) {
+      const other = nodes[j];
+      const dx = node.x - other.x;
+      const dy = node.y - other.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance < maxDistance) {
+        canvasContext.beginPath();
+        canvasContext.moveTo(node.x, node.y);
+        canvasContext.lineTo(other.x, other.y);
+
+        canvasContext.strokeStyle =
+          `rgba(${rgb}, ${0.16 * (1 - distance / maxDistance)})`;
+
+        canvasContext.lineWidth = 0.7;
+        canvasContext.stroke();
+      }
+    }
+
+    canvasContext.beginPath();
+    canvasContext.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+    canvasContext.fillStyle = `rgba(${rgb}, .65)`;
+    canvasContext.fill();
+  }
+
+  if (!prefersReducedMotion) {
+    animationFrame = requestAnimationFrame(drawNeuralNetwork);
+  }
+}
+
+function startNeuralNetwork() {
+  if (animationFrame) cancelAnimationFrame(animationFrame);
+
+  resizeCanvas();
+  drawNeuralNetwork();
+}
+
+if (canvasContext) {
+  startNeuralNetwork();
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 780) {
+      startNeuralNetwork();
+    } else {
+      if (animationFrame) cancelAnimationFrame(animationFrame);
+      canvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
+    }
+  });
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      if (animationFrame) cancelAnimationFrame(animationFrame);
+    } else {
+      startNeuralNetwork();
+    }
+  });
+}
+
+
+/* =====================================================
+   SUBTLE 3D PROFILE CARD MOVEMENT
+   ===================================================== */
+
+const profileCard = $("#profile-card");
+
+if (
+  profileCard &&
+  window.matchMedia("(pointer: fine)").matches &&
+  !prefersReducedMotion
+) {
+  heroArt.addEventListener("pointermove", (event) => {
+    const rect = heroArt.getBoundingClientRect();
+
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+    profileCard.style.transform =
+      `rotateY(${x * 7}deg) rotateX(${-y * 7}deg)`;
+  });
+
+  heroArt.addEventListener("pointerleave", () => {
+    profileCard.style.transform = "";
+  });
+}
+
+
+/* =====================================================
+   KEYBOARD SHORTCUTS
+   ===================================================== */
+
+document.addEventListener("keydown", (event) => {
+  const isShortcut = event.ctrlKey || event.metaKey;
+
+  if (
+    isShortcut &&
+    event.key.toLowerCase() === "k" &&
+    !terminalDialog.open
+  ) {
+    event.preventDefault();
+    openTerminal();
+  }
+
+  if (event.key === "Escape") {
+    if (chatPanel.classList.contains("open")) {
+      chatPanel.classList.remove("open");
+    }
+
+    if (terminalDialog.open) {
+      terminalDialog.close();
+    }
+  }
+});
+
+
+/* =====================================================
+   FINAL INITIALISATION
+   ===================================================== */
+
+filterProjects();
+updateScroll();
+updateThemeButton();
+
+console.info(
+  "Portfolio initialised. Update CONFIG with your actual profile details."
+);
+</script>
+</body>
+</html>
